@@ -58,5 +58,23 @@ class ExpenseRetrieveUpdateDeleteView(APIView):
     permission_classes=[permissions.IsAuthenticated]
 
     def get(self,request,pk=None):
+        instance=get_object_or_404(Expense,id=pk)
+        serializer_instance=ExpenseSerializer(instance)
+        return Response(data=serializer_instance.data)
+
+    def put(self,request,pk=None):
+        instance=get_object_or_404(Expense,id=pk)
+        form_data=request.data
+        serializer_instance=ExpenseSerializer(data=form_data,instance=instance)
+        if serializer_instance.is_valid():
+            serializer_instance.save()
+            return Response(data=serializer_instance.data)
+        else:
+            return Response(data=serializer_instance.errors)
+
+    def delete(self,request,pk=None):
+        instance=get_object_or_404(Expense,id=pk)
+        instance.delete()
+        return Response(data={"message":"deleted"})
 
 
