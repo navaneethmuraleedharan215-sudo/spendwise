@@ -89,4 +89,34 @@ class ExpenseRetrieveUpdateDeleteView(APIView):
         instance.delete()
         return Response(data={"message":"deleted"})
 
+from datetime import datetime
+from django.db.models import Sum
+
+class ExpenseSummaryView(APIView):
+    authentication_classes=[authentication.TokenAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+
+    def get(self,request):
+        response_data={
+            "todays_total":0
+        }
+        cur_date=datetime.now().date()
+        cur_month=datetime.now().month
+        cur_year=datetime.now().year
+        monthly_transaction=Expense.objects.filter(owner=request.user,created_at__month=cur_month,created_at__year=cur_year)
+        if monthly_transaction:
+            monthly_total=monthly_transaction.values("amount").aggregate(total=Sum("amount")).get("total")
+            response_data["monthly_total"]=monthly_total
+        todays_transaction=Expense.objects.filter(owner=request.user,created_at__date=cur_date)
+        if todays_transaction:
+            todays_total=todays_transaction.values("amount").aggregate(total=Sum("amount")).get("total")
+            #todays category summary
+            
+            category_summary=todays_transaction.values("category").annotate(total=Sum("amount"))
+            response_data["todays_total"]=todays_total
+            
+            response_data["category_summary"]=category_summary
+            return Response(data=response_data)
+
+
 

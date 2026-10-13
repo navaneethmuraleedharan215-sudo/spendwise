@@ -16,7 +16,7 @@ POST http://127.0.0.1:8000/v1/spending/token/
 Content-Type: application/json
 
 {
-    "username":"django1",
+    "username":"django",
     "password":"password@123"
 }
 
@@ -33,7 +33,7 @@ Authorization: Token b5e6ab1b2cc1619da59b460447cf3e5cfc72fcae
 ###
 GET http://127.0.0.1:8000/v1/spending/expense/
 Accept: application/json
-Authorization: Token b5e6ab1b2cc1619da59b460447cf3e5cfc72fcae
+Authorization: Token 7bc7b416e9d5fe4e9dd08d29d78e0834a605f17e
 #Authorization: Basic django1:password@123
  
 
@@ -41,14 +41,14 @@ Authorization: Token b5e6ab1b2cc1619da59b460447cf3e5cfc72fcae
 ###
 POST http://127.0.0.1:8000/v1/spending/expense/
 Content-Type: application/json
-Authorization: Token b5e6ab1b2cc1619da59b460447cf3e5cfc72fcae
+Authorization: Token 7bc7b416e9d5fe4e9dd08d29d78e0834a605f17e
 #Authorization: Basic django1:password@123
 
 {
-    "title":"medicine",
-    "amount":4000,
+    "title":"milk",
+    "amount":40,
     "category":"FOOD",
-    "payment_method":"upi"
+    "payment_method":"cash"
 
 
 }
@@ -86,4 +86,10 @@ Authorization: Token b5e6ab1b2cc1619da59b460447cf3e5cfc72fcae
 DELETE http://127.0.0.1:8000/v1/spending/expense/3/
 Accept: application/json
 Authorization: Basic django:password@123
+
+#api call for getting total
+###
+GET http://127.0.0.1:8000/v1/spending/expense/summary/
+Accept: application/json
+Authorization: Token 7bc7b416e9d5fe4e9dd08d29d78e0834a605f17e
 
