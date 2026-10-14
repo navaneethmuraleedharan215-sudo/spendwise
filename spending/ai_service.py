@@ -1,5 +1,5 @@
 from google import genai
-api_key="AQ.Ab8RN6ImcdUSKkhEschBJGXphfepzuK56S05CKNe8TW65Pka-g"
+api_key=""
 
 def get_budget_plan(response_data):
     monthly_total=response_data.get("monthly_total")
