@@ -1,5 +1,5 @@
 from google import genai
-api_key="AQ.Ab8RN6ImcdUSKkhEschBJGXphfepzuK56S05CKNe8TW65Pka-g"
+api_key=""
 
 #step1:authenticate
 client=genai.Client(api_key=api_key)
