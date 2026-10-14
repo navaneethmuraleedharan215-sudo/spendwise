@@ -45,9 +45,9 @@ Authorization: Token 7bc7b416e9d5fe4e9dd08d29d78e0834a605f17e
 #Authorization: Basic django1:password@123
 
 {
-    "title":"milk",
-    "amount":40,
-    "category":"FOOD",
+    "title":"travel",
+    "amount":2500,
+    "category":"TRAVEL",
     "payment_method":"cash"
 
 
@@ -93,3 +93,8 @@ GET http://127.0.0.1:8000/v1/spending/expense/summary/
 Accept: application/json
 Authorization: Token 7bc7b416e9d5fe4e9dd08d29d78e0834a605f17e
 
+#call for budget plan
+###
+GET http://127.0.0.1:8000/v1/spending/expense/budget/
+Accept: application/json
+Authorization: Token 7bc7b416e9d5fe4e9dd08d29d78e0834a605f17e
