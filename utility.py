@@ -1,5 +1,8 @@
 from google import genai
-api_key=""
+import os
+from dotenv import load_dotenv
+load_dotenv()
+api_key=os.getenv("api_key")
 
 #step1:authenticate
 client=genai.Client(api_key=api_key)
